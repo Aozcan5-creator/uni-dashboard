@@ -3,121 +3,265 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stundenplan SS 2026</title>
+<title>Semester-Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #FAFAF8;
-  --bg2: #F3F1EC;
-  --tx: #1C1917;
-  --tx2: #78716C;
-  --tx3: #A8A29E;
-  --bd: #E7E5E4;
-  --purple: #3C3489; --purple-bg: #EEEDFE;
-  --teal: #085041;   --teal-bg: #E1F5EE;
-  --coral: #712B13;  --coral-bg: #FAECE7;
-  --blue: #0C447C;   --blue-bg: #E6F1FB;
-  --pink: #72243E;   --pink-bg: #FBEAF0;
-  --green: #27500A;  --green-bg: #EAF3DE;
-  --gray: #444441;   --gray-bg: #F1EFE8;
-  --amber: #633806;  --amber-bg: #FAEEDA;
-  --red: #791F1F;    --red-bg: #FCEBEB;
+  --bg:#FAFAF8;--bg2:#F5F3EF;--bg3:#EEEDEB;
+  --tx:#1C1917;--tx2:#57534E;--tx3:#A8A29E;
+  --bd:#E7E5E4;--r:10px;
+  --accent:#0C447C;--accent-bg:#E6F1FB;
+  --green:#27500A;--green-bg:#EAF3DE;
+  --amber:#633806;--amber-bg:#FAEEDA;
+  --red:#791F1F;--red-bg:#FCEBEB;
+  --purple:#3C3489;--purple-bg:#EEEDFE;
+  --teal:#085041;--teal-bg:#E1F5EE;
+  --coral:#712B13;--coral-bg:#FAECE7;
+  --pink:#72243E;--pink-bg:#FBEAF0;
+  --gray:#444441;--gray-bg:#F1EFE8;
 }
 @media(prefers-color-scheme:dark){:root{
-  --bg: #161614; --bg2: #222220;
-  --tx: #E8E5E0; --tx2: #A8A29E; --tx3: #5C5A56; --bd: #2E2E2B;
-  --purple: #CECBF6; --purple-bg: #26215C;
-  --teal: #9FE1CB;   --teal-bg: #04342C;
-  --coral: #F5C4B3;  --coral-bg: #4A1B0C;
-  --blue: #B5D4F4;   --blue-bg: #042C53;
-  --pink: #F4C0D1;   --pink-bg: #4B1528;
-  --green: #C0DD97;  --green-bg: #173404;
-  --gray: #D3D1C7;   --gray-bg: #2C2C2A;
-  --amber: #FAC775;  --amber-bg: #412402;
-  --red: #F7C1C1;    --red-bg: #501313;
+  --bg:#161614;--bg2:#252523;--bg3:#2E2E2B;
+  --tx:#E8E5E0;--tx2:#A8A29E;--tx3:#6B6965;--bd:#2E2E2B;
+  --accent:#B5D4F4;--accent-bg:#042C53;
+  --green:#C0DD97;--green-bg:#173404;
+  --amber:#FAC775;--amber-bg:#412402;
+  --red:#F7C1C1;--red-bg:#501313;
+  --purple:#CECBF6;--purple-bg:#26215C;
+  --teal:#9FE1CB;--teal-bg:#04342C;
+  --coral:#F5C4B3;--coral-bg:#4A1B0C;
+  --pink:#F4C0D1;--pink-bg:#4B1528;
+  --gray:#D3D1C7;--gray-bg:#2C2C2A;
 }}
 *{margin:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--tx);padding:1rem}
-.wrap{overflow-x:auto}
-table{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;border:0.5px solid var(--bd);border-radius:10px;overflow:hidden;font-size:13px}
-th{background:var(--bg2);color:var(--tx2);font-weight:500;font-size:12px;padding:10px 6px;text-align:center;border-bottom:0.5px solid var(--bd)}
-th:first-child{text-align:left;padding-left:12px;min-width:78px}
-td{padding:3px;vertical-align:top;border-bottom:0.5px solid var(--bd);border-right:0.5px solid var(--bd);height:52px}
-td:first-child{padding:10px 12px;font-size:11px;font-weight:500;color:var(--tx2);white-space:nowrap;vertical-align:middle;background:var(--bg2)}
-tr:last-child td{border-bottom:none}
-td:last-child{border-right:none}
-.e{border-radius:7px;padding:5px 7px;height:100%;display:flex;flex-direction:column;justify-content:center;line-height:1.3}
-.e .n{font-weight:500;font-size:12px}
-.e .m{font-size:10px;opacity:.7;margin-top:1px}
-.e.purple{background:var(--purple-bg);color:var(--purple)}
-.e.teal{background:var(--teal-bg);color:var(--teal)}
-.e.coral{background:var(--coral-bg);color:var(--coral)}
-.e.blue{background:var(--blue-bg);color:var(--blue)}
-.e.pink{background:var(--pink-bg);color:var(--pink)}
-.e.green{background:var(--green-bg);color:var(--green)}
-.e.gray{background:var(--gray-bg);color:var(--gray)}
-.e.amber{background:var(--amber-bg);color:var(--amber)}
-.e.red{background:var(--red-bg);color:var(--red)}
-.f{color:var(--tx3);font-size:11px;display:flex;align-items:center;justify-content:center;height:100%}
-.s{display:flex;flex-direction:column;gap:2px;height:100%}
-.s .e{height:auto;flex:1}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--tx);padding:2rem 1.5rem;max-width:960px;margin:0 auto;line-height:1.5}
+h1{font-size:22px;font-weight:600;margin-bottom:.25rem}
+.sub{font-size:14px;color:var(--tx3);margin-bottom:2rem}
+h2{font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--tx3);margin:2.5rem 0 .75rem}
+
+.scroll{overflow-x:auto}
+.sp{font-size:13px;width:100%;min-width:640px;border-collapse:separate;border-spacing:0;border-radius:var(--r);border:.5px solid var(--bd);overflow:hidden}
+.sp th{background:var(--bg2);color:var(--tx2);font-weight:500;font-size:12px;padding:10px 6px;text-align:center;border-bottom:.5px solid var(--bd)}
+.sp th:first-child{text-align:left;padding-left:12px;min-width:78px}
+.sp td{padding:3px;vertical-align:top;border-bottom:.5px solid var(--bd);border-right:.5px solid var(--bd);height:52px}
+.sp td:first-child{padding:10px 12px;font-size:11px;font-weight:500;color:var(--tx2);white-space:nowrap;vertical-align:middle;background:var(--bg2)}
+.sp tr:last-child td{border-bottom:none}
+.sp td:last-child{border-right:none}
+
+/* Editable stundenplan cells */
+.cell{border-radius:7px;min-height:44px;padding:5px 7px;font-size:12px;line-height:1.4;color:var(--tx);outline:none;transition:background .15s}
+.cell:hover{background:var(--bg2)}
+.cell:focus{background:var(--bg3)}
+.cell:empty::before{content:attr(data-ph);color:var(--tx3);font-size:11px;pointer-events:none}
+
+/* Filter bar */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.75rem}
+.fbtn{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:500;border:.5px solid var(--bd);background:var(--bg);color:var(--tx2);cursor:pointer;transition:all .15s;font-family:inherit}
+.fbtn:hover{border-color:var(--tx3)}
+.fbtn.active{border-color:transparent}
+.fbtn[data-f="alle"].active{background:var(--bg3);color:var(--tx);border-color:var(--bd)}
+.fbtn[data-f="pfl"].active{background:var(--green-bg);color:var(--green)}
+.fbtn[data-f="vr"].active{background:var(--accent-bg);color:var(--accent)}
+.fbtn[data-f="ki"].active{background:var(--purple-bg);color:var(--purple)}
+.fbtn[data-f="bg"].active{background:var(--teal-bg);color:var(--teal)}
+.fbtn[data-f="awp"].active{background:var(--gray-bg);color:var(--gray)}
+
+/* Tables */
+.tbl{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);border:.5px solid var(--bd);overflow:hidden;font-size:13px}
+.tbl th{background:var(--bg2);color:var(--tx2);font-weight:500;font-size:12px;padding:10px 14px;text-align:left;border-bottom:.5px solid var(--bd)}
+.tbl td{padding:6px 14px;border-bottom:.5px solid var(--bd);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--bg2)}
+.tbl tr.dim td{opacity:.15}
+
+[contenteditable]{outline:none;border-radius:4px;padding:1px 3px;transition:background .15s}
+[contenteditable]:hover{background:var(--bg2)}
+[contenteditable]:focus{background:var(--bg3)}
+[contenteditable]:empty::before{content:attr(data-ph);color:var(--tx3)}
+
+input[type=date]{font-family:inherit;font-size:12px;border:.5px solid var(--bd);border-radius:6px;padding:3px 8px;background:var(--bg);color:var(--tx);outline:none}
+input[type=date]:focus{border-color:var(--accent)}
+select{font-family:inherit;font-size:11px;border:.5px solid var(--bd);border-radius:6px;padding:3px 8px;background:var(--bg);color:var(--tx);outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='8' height='5' viewBox='0 0 8 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L4 4L7 1' stroke='%2378716C' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:22px}
+select:focus{border-color:var(--accent)}
+.sel-pfl{background-color:var(--green-bg);color:var(--green);border-color:var(--green-bg)}
+.sel-vr{background-color:var(--accent-bg);color:var(--accent);border-color:var(--accent-bg)}
+.sel-ki{background-color:var(--purple-bg);color:var(--purple);border-color:var(--purple-bg)}
+.sel-bg{background-color:var(--teal-bg);color:var(--teal);border-color:var(--teal-bg)}
+.sel-awp{background-color:var(--gray-bg);color:var(--gray);border-color:var(--gray-bg)}
+
+.add-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:.5px solid var(--bd);background:var(--bg);color:var(--tx2);cursor:pointer;font-family:inherit;margin-top:8px;transition:all .15s}
+.add-btn:hover{background:var(--bg2);color:var(--tx)}
+.del-btn{width:22px;height:22px;border-radius:6px;border:none;background:transparent;color:var(--tx3);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.del-btn:hover{background:var(--red-bg);color:var(--red)}
+.sum-row td{font-weight:600;background:var(--bg2);border-top:1.5px solid var(--bd)}
+.footer{margin-top:2rem;padding:1rem;background:var(--bg2);border-radius:var(--r);font-size:12px;color:var(--tx3)}
 </style>
 </head>
 <body>
-<div class="wrap">
-<table>
+
+<h1 contenteditable>Semester-Dashboard</h1>
+<p class="sub" contenteditable>SS 2026 · Studiengang · Universität</p>
+
+<!-- ═══ STUNDENPLAN ═══ -->
+<h2>Stundenplan</h2>
+<div class="scroll">
+<table class="sp">
 <thead><tr><th>Zeit</th><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th></tr></thead>
 <tbody>
 <tr>
   <td>08:00–10:00</td>
-  <td><div class="f">–</div></td>
-  <td><div class="s">
-    <div class="e teal"><span class="n">Gewässergüte</span><span class="m">VU · bis 10:00</span></div>
-    <div class="e coral"><span class="n">Mechanik II</span><span class="m">VO · bis 11:00</span></div>
-  </div></td>
-  <td><div class="e blue"><span class="n">Straßenplanung 1</span><span class="m">VO</span></div></td>
-  <td><div class="e purple"><span class="n">Baustatik II</span><span class="m">VO/UE</span></div></td>
-  <td><div class="s">
-    <div class="e amber"><span class="n">Grundl. Verkehrswirt.</span></div>
-    <div class="e coral"><span class="n">Mechanik II</span><span class="m">UE</span></div>
-  </div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
 </tr>
 <tr>
   <td>10:30–12:00</td>
-  <td><div class="e pink"><span class="n">Verkehrsplanung I</span><span class="m">VU · bis 13:00</span></div></td>
-  <td><div class="e purple"><span class="n">Baustatik II</span><span class="m">UE</span></div></td>
-  <td><div class="e blue"><span class="n">Straßenplanung 1</span><span class="m">UE · bis 11:15</span></div></td>
-  <td><div class="e green"><span class="n">Eisenbahnwesen I</span><span class="m">VU</span></div></td>
-  <td><div class="e gray"><span class="n">Felsmechanik</span><span class="m">VO</span></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
 </tr>
 <tr>
   <td>12:30–14:00</td>
-  <td><div class="f">–</div></td>
-  <td><div class="f">–</div></td>
-  <td><div class="e teal"><span class="n">Geotechnik II</span><span class="m">VO</span></div></td>
-  <td><div class="f">–</div></td>
-  <td><div class="e gray"><span class="n">Felsmechanik</span><span class="m">UE</span></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
 </tr>
 <tr>
   <td>14:30–16:00</td>
-  <td><div class="f">–</div></td>
-  <td><div class="f">–</div></td>
-  <td><div class="e amber"><span class="n">Realisierungsmgmt. 2</span></div></td>
-  <td><div class="e teal"><span class="n">Geotechnik II</span><span class="m">UE</span></div></td>
-  <td><div class="f">–</div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
 </tr>
 <tr>
   <td>ab 16:15</td>
-  <td><div class="e red"><span class="n">Robotics</span><span class="m">VU · 16:30–18:00</span></div></td>
-  <td><div class="f">–</div></td>
-  <td><div class="f">–</div></td>
-  <td><div class="s">
-    <div class="e blue"><span class="n">Hydromechanik II</span><span class="m">16:30–18:00</span></div>
-    <div class="e coral"><span class="n">Mechanik II</span><span class="m">UE · 16:30–18:00</span></div>
-  </div></td>
-  <td><div class="f">–</div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
+  <td><div class="cell" contenteditable data-ph="Kurs eintragen"></div></td>
 </tr>
 </tbody>
 </table>
 </div>
+
+<!-- ═══ PRÜFUNGEN ═══ -->
+<h2>Prüfungen & Deadlines</h2>
+<div class="filters" id="pr-filters">
+  <button class="fbtn active" data-f="alle" onclick="filterTbl('pr','alle')">Alle</button>
+  <button class="fbtn" data-f="pfl" onclick="filterTbl('pr','pfl')">Pflicht</button>
+  <button class="fbtn" data-f="vr" onclick="filterTbl('pr','vr')">Verkehr & Raum</button>
+  <button class="fbtn" data-f="ki" onclick="filterTbl('pr','ki')">Konstr. Ing.bau</button>
+  <button class="fbtn" data-f="bg" onclick="filterTbl('pr','bg')">Baubetrieb & Geo.</button>
+  <button class="fbtn" data-f="awp" onclick="filterTbl('pr','awp')">Wahlpflicht</button>
+</div>
+<table class="tbl" id="pr-tbl">
+<thead><tr><th style="width:25%">Modul</th><th style="width:15%">Typ</th><th style="width:20%">Datum</th><th style="width:20%">Studienrichtung</th><th style="width:15%">Status</th><th style="width:5%"></th></tr></thead>
+<tbody id="pr-body"></tbody>
+</table>
+<button class="add-btn" onclick="addPrRow()">+ Prüfung hinzufügen</button>
+
+<!-- ═══ MODULÜBERSICHT ═══ -->
+<h2>Modulübersicht & ECTS</h2>
+<div class="filters" id="mod-filters">
+  <button class="fbtn active" data-f="alle" onclick="filterTbl('mod','alle')">Alle</button>
+  <button class="fbtn" data-f="pfl" onclick="filterTbl('mod','pfl')">Pflicht</button>
+  <button class="fbtn" data-f="vr" onclick="filterTbl('mod','vr')">Verkehr & Raum</button>
+  <button class="fbtn" data-f="ki" onclick="filterTbl('mod','ki')">Konstr. Ing.bau</button>
+  <button class="fbtn" data-f="bg" onclick="filterTbl('mod','bg')">Baubetrieb & Geo.</button>
+  <button class="fbtn" data-f="awp" onclick="filterTbl('mod','awp')">Wahlpflicht</button>
+</div>
+<table class="tbl" id="mod-tbl">
+<thead><tr><th style="width:25%">Modul</th><th style="width:10%">ECTS</th><th style="width:10%">SWS</th><th style="width:22%">Studienrichtung</th><th style="width:25%">Notiz</th><th style="width:8%"></th></tr></thead>
+<tbody id="mod-body"></tbody>
+<tfoot><tr class="sum-row"><td>Gesamt</td><td id="ects-sum">–</td><td id="sws-sum">–</td><td></td><td></td><td></td></tr></tfoot>
+</table>
+<button class="add-btn" onclick="addModRow()">+ Modul hinzufügen</button>
+
+<div class="footer" contenteditable>
+  Studienrichtungen und Infos hier eintragen · Stand: April 2026
+</div>
+
+<script>
+function selHTML(val) {
+  const cls = val ? 'sel-'+val : '';
+  return `<select class="${cls}" data-role="cat" onchange="styleSel(this)">
+    <option value="">–</option>
+    <option value="pfl" ${val==='pfl'?'selected':''}>Pflicht</option>
+    <option value="vr" ${val==='vr'?'selected':''}>Verkehr & Raum</option>
+    <option value="ki" ${val==='ki'?'selected':''}>Konstr. Ing.bau</option>
+    <option value="bg" ${val==='bg'?'selected':''}>Baubetrieb & Geo.</option>
+    <option value="awp" ${val==='awp'?'selected':''}>Wahlpflicht</option>
+  </select>`;
+}
+function statusHTML(val) {
+  return `<select data-role="status">
+    <option value="offen" ${val==='offen'?'selected':''}>offen</option>
+    <option value="angemeldet" ${val==='angemeldet'?'selected':''}>angemeldet</option>
+    <option value="bestanden" ${val==='bestanden'?'selected':''}>bestanden</option>
+  </select>`;
+}
+function styleSel(el){el.className='';if(el.value)el.classList.add('sel-'+el.value)}
+
+function addPrRow(m='',t='Klausur',d='',cat='',st='offen'){
+  document.getElementById('pr-body').insertAdjacentHTML('beforeend',
+    `<tr data-cat="${cat}">
+      <td contenteditable data-ph="Modulname">${m}</td>
+      <td contenteditable data-ph="Typ">${t}</td>
+      <td><input type="date" value="${d}"></td>
+      <td>${selHTML(cat)}</td>
+      <td>${statusHTML(st)}</td>
+      <td><button class="del-btn" onclick="this.closest('tr').remove()">&times;</button></td>
+    </tr>`);
+}
+
+function addModRow(m='',e='',s='',cat='',n=''){
+  document.getElementById('mod-body').insertAdjacentHTML('beforeend',
+    `<tr data-cat="${cat}">
+      <td contenteditable data-ph="Modulname">${m}</td>
+      <td contenteditable data-ph="0">${e}</td>
+      <td contenteditable data-ph="0">${s}</td>
+      <td>${selHTML(cat)}</td>
+      <td contenteditable data-ph="Notiz">${n}</td>
+      <td><button class="del-btn" onclick="this.closest('tr').remove();calcSum()">&times;</button></td>
+    </tr>`);
+  calcSum();
+}
+
+function calcSum(){
+  let ec=0,sw=0;
+  document.querySelectorAll('#mod-body tr').forEach(r=>{
+    ec+=parseInt(r.cells[1]?.textContent)||0;
+    sw+=parseInt(r.cells[2]?.textContent)||0;
+  });
+  document.getElementById('ects-sum').textContent=ec||'–';
+  document.getElementById('sws-sum').textContent=sw||'–';
+}
+document.getElementById('mod-tbl').addEventListener('input',e=>{if(e.target.hasAttribute('contenteditable'))calcSum()});
+
+function filterTbl(prefix,f){
+  document.querySelectorAll(`#${prefix}-filters .fbtn`).forEach(b=>b.classList.toggle('active',b.dataset.f===f));
+  document.querySelectorAll(`#${prefix}-body tr`).forEach(r=>{
+    const sel=r.querySelector('[data-role=cat]');
+    const cat=sel?sel.value:'';
+    r.classList.toggle('dim',f!=='alle'&&cat!==f);
+  });
+}
+document.addEventListener('change',e=>{
+  if(e.target.dataset.role==='cat'){
+    e.target.closest('tr').dataset.cat=e.target.value;
+  }
+});
+
+// Start with 3 empty rows each
+for(let i=0;i<3;i++){addPrRow();addModRow()}
+</script>
 </body>
 </html>
